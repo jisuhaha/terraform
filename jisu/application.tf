@@ -54,27 +54,6 @@ resource "kubernetes_service" "spring-music-service" {
       port        = 8080
       target_port = 8080
     }
-    type = "NodePort"
-  }
-}
-resource "kubernetes_service" "spring-music-service2" {
-  metadata {
-    name = "spring-music-lb"
-    annotations = {
-      "service.beta.kubernetes.io/aws-load-balancer-type" = external
-      "service.beta.kubernetes.io/aws-load-balancer-nlb-target-type"= ip
-      "service.beta.kubernetes.io/aws-load-balancer-scheme" = internet-facing
-    }
-  }
-  spec {
-    selector = {
-      "app.kubernetes.io/name" = "spring-music"
-    }
-    port {
-      port        = 8080
-      target_port = 8080
-      protocol: "TCP"
-    }
     type = "LoadBalancer"
   }
 }
@@ -109,3 +88,5 @@ resource "kubernetes_ingress_v1" "alb" {
     }
   }
 }
+
+
