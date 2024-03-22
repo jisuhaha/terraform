@@ -64,7 +64,7 @@ resource "helm_release" "alb-controller" {
 
   set {
     name  = "image.repository"
-    value = "public.ecr.aws/eks/aws-load-balancer-controller:v2.5.4"
+    value = "602401143452.dkr.ecr.us-east-2.amazonaws.com/amazon/aws-load-balancer-controller"
   }
 
   set {
