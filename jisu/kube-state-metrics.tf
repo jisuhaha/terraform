@@ -1,4 +1,4 @@
-resource "kubernetes_cluster_role_binding" "clusterRoleBinding" {
+resource "kubernetes_cluster_role_binding" "kubestatemetrics_clusterRoleBinding" {
   metadata {
     name = "kube-state-metrics"
   }
@@ -15,8 +15,8 @@ resource "kubernetes_cluster_role_binding" "clusterRoleBinding" {
 }
 
 
-resource "kubernetes_cluster_role" "clusterRole" {
-  depends_on = [kubernetes_cluster_role_binding.clusterRoleBinding]
+resource "kubernetes_cluster_role" "kubestatemetrics_clusterRole" {
+  depends_on = [kubernetes_cluster_role_binding.kubestatemetrics_clusterRoleBinding]
   metadata {
     name = "kube-state-metrics"
   }
@@ -86,7 +86,7 @@ resource "kubernetes_cluster_role" "clusterRole" {
 }
 resource "kubernetes_service_account" "kube-state-metrics" {
   depends_on = [
-  kubernetes_cluster_role.clusterRole
+  kubernetes_cluster_role.kubestatemetrics_clusterRole
   ]
   metadata {
     name = "kube-state-metrics"
