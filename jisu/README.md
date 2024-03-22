@@ -18,7 +18,7 @@
 - web-asg.tf
 - web-lanch-conjfiguration.tf
 - web-lb.tf
-  terraform apply실행
+- Variable.tf 파일 region, AMI 변경 이후 terraform apply실행
 # STEP 2
 - terraform control server내
   aws eks update-kubeconfig --region {region} --name was
