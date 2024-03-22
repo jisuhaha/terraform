@@ -185,6 +185,6 @@ resource "kubernetes_service" "metrics-service" {
     selector = {
       app = "kube-state-metrics"
     }
-    type = "LoadBalancer"
+    type = "NodePort"
   }
 }

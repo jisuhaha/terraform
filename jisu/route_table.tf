@@ -8,6 +8,10 @@ resource "aws_route_table" "public-rt" {
 }
 
 resource "aws_route_table" "private-rt" {
+  depends_on = [
+    aws_nat_gateway.nat,
+    aws_vpc.vpc
+  ]
   vpc_id = aws_vpc.vpc.id
   route {
     cidr_block = "0.0.0.0/0"

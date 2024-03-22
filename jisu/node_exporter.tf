@@ -73,7 +73,6 @@ resource "kubernetes_service" "node-exporter-service" {
       port        = 9100
       protocol = "TCP"
     }
-    type = "LoadBalancer"
     type = "NodePort"
     selector = {
       k8s-app = "node-exporter"

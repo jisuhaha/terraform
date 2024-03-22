@@ -54,7 +54,7 @@ resource "helm_release" "alb-controller" {
 
   set {
     name  = "region"
-    value = "us-east-2"
+    value = var.region
   }
 
   set {
