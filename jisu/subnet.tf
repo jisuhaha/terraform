@@ -93,3 +93,9 @@ resource "aws_db_subnet_group" "rds-subnet" {
     Name = "DB Subnet Group"
   }
 }
+
+resource "aws_network_interface" "ni" {
+  subnet_id       = aws_subnet.public-subnet1.id
+  private_ips     = ["10.0.1.10"]
+  security_groups = [aws_security_group.bastion_sg.id]
+}
