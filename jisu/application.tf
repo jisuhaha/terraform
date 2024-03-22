@@ -54,7 +54,7 @@ resource "kubernetes_service" "spring-music-service" {
       port        = 8080
       target_port = 8080
     }
-    type = "LoadBalancer"
+    type = "NodePort"
   }
 }
 
