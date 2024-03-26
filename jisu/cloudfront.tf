@@ -7,7 +7,7 @@ resource "aws_cloudfront_distribution" "cf_dist" {
     domain_name = aws_elb.web_elb.dns_name
     origin_id   = aws_elb.web_elb.dns_name
     custom_origin_config {
-      http_port              = 80yt
+      http_port              = 80
       https_port             = 443
       origin_protocol_policy = "http-only"
       origin_ssl_protocols   = ["TLSv1.2"]
