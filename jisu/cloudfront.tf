@@ -1,12 +1,13 @@
 # creating Cloudfront distribution :
 resource "aws_cloudfront_distribution" "cf_dist" {
   comment = "Cloudfront for tomcat Apache"
+  web_acl_id = aws_wafv2_web_acl.WafWebAcl.arn
   enabled             = true
   origin {
     domain_name = aws_elb.web_elb.dns_name
     origin_id   = aws_elb.web_elb.dns_name
     custom_origin_config {
-      http_port              = 80
+      http_port              = 80yt
       https_port             = 443
       origin_protocol_policy = "http-only"
       origin_ssl_protocols   = ["TLSv1.2"]
