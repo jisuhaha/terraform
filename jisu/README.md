@@ -42,6 +42,4 @@
   해당 파일 추가 후 terraform apply
   이후 생성된 was loadBalancer의 url을 user-data.sh에서 변경후 terraform apply
 
-
-
-> Written with [StackEdit](https://stackedit.io/).
+https://foregoing-okapi-e49.notion.site/Projects-999d9c5ed5bc441e9051dbe17c820a89?pvs=4
