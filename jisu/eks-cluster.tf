@@ -4,6 +4,7 @@ resource "aws_eks_cluster" "was" {
 
   vpc_config {
     subnet_ids = [aws_subnet.was-subnet1.id, aws_subnet.was-subnet2.id]
+
   }
 
   # Ensure that IAM Role permissions are created before and deleted after EKS Cluster handling.
@@ -15,6 +16,8 @@ resource "aws_eks_cluster" "was" {
   ]
 
   enabled_cluster_log_types = ["api", "audit"]
+
+
 }
 
 output "endpoint" {

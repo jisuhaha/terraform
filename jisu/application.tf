@@ -2,28 +2,28 @@ provider "kubernetes" {
   config_path    = "~/.kube/config"
 }
 
-resource "kubernetes_deployment" "spring-music" {
+resource "kubernetes_deployment" "was-application" {
   metadata {
-    name = "spring-music"
+    name = "was-application"
     namespace = "default"
   }
   spec {
-    replicas = 3
+    replicas = 2
     selector {
       match_labels = {
-        "app.kubernetes.io/name" = "spring-music"
+        "app.kubernetes.io/name" = "was-application"
       }
     }
     template {
       metadata {
         labels = {
-          "app.kubernetes.io/name" = "spring-music"
+          "app.kubernetes.io/name" = "was-application"
         }
       }
       spec {
         container {
-          name  = "spring-music"
-          image = "paastaccc/spring-music-sample:0.1"
+          name  = "was"
+          image = "${your ecr_url}"
           image_pull_policy = "Always"
           port {
             container_port = 8080
@@ -42,13 +42,13 @@ resource "kubernetes_deployment" "spring-music" {
   }
 }
 
-resource "kubernetes_service" "spring-music-service" {
+resource "kubernetes_service" "was-service" {
   metadata {
-    name = "spring-music-service"
+    name = "was-service"
   }
   spec {
     selector = {
-      "app.kubernetes.io/name" = "spring-music"
+      "app.kubernetes.io/name" = "was-application"
     }
     port {
       port        = 8080
@@ -76,7 +76,7 @@ resource "kubernetes_ingress_v1" "alb" {
           path_type = "Prefix"
           backend {
             service {
-              name = "spring-music-service"
+              name = "was-service"
               port {
                 number = 8080
               }
@@ -88,5 +88,3 @@ resource "kubernetes_ingress_v1" "alb" {
     }
   }
 }
-
-

@@ -4,6 +4,7 @@ resource "aws_eks_node_group" "was" {
   node_role_arn   = aws_iam_role.was-node.arn
   subnet_ids      = [ aws_subnet.was-subnet1.id ,aws_subnet.was-subnet2.id]
 
+
   scaling_config {
     desired_size = 2
     max_size     = 3
@@ -20,6 +21,7 @@ resource "aws_eks_node_group" "was" {
     aws_iam_role_policy_attachment.example-AmazonEKSWorkerNodePolicy,
     aws_iam_role_policy_attachment.example-AmazonEKS_CNI_Policy,
     aws_iam_role_policy_attachment.example-AmazonEC2ContainerRegistryReadOnly,
+    aws_iam_role_policy_attachment.example-CloudWatchAgentServerPolicy
   ]
 }
 
@@ -51,5 +53,10 @@ resource "aws_iam_role_policy_attachment" "example-AmazonEKS_CNI_Policy" {
 
 resource "aws_iam_role_policy_attachment" "example-AmazonEC2ContainerRegistryReadOnly" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+  role       = aws_iam_role.was-node.name
+}
+
+resource "aws_iam_role_policy_attachment" "example-CloudWatchAgentServerPolicy" {
+  policy_arn = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
   role       = aws_iam_role.was-node.name
 }
