@@ -23,7 +23,7 @@ resource "kubernetes_deployment" "was-application" {
       spec {
         container {
           name  = "was"
-          image = "${your ecr_url}"
+          image = "${your_ecr_url}"
           image_pull_policy = "Always"
           port {
             container_port = 8080
